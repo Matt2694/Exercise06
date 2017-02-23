@@ -108,9 +108,11 @@ namespace LINQ_Examples
                                  };
         #endregion
 
+        #region Exercises
         static void Main(string[] args)
         {
-            //exercise 1-tue
+
+            #region Exercise 1 - Tuesday
 
             //IEnumerable<double> exchangeQuery =
             //    from e in ExchangedPrices
@@ -122,7 +124,9 @@ namespace LINQ_Examples
             //    where c.State == "GA"
             //    select c;
 
-            //exercise 2-tue
+            #endregion
+
+            #region Exercise 2 - Tuesday
 
             //IEnumerable<Customer> firstNameQuery =
             //    from c in customers
@@ -138,7 +142,9 @@ namespace LINQ_Examples
             //    where d.State.Equals(c.State)
             //    select c.State;
 
-            //exercise 3-tue
+            #endregion
+
+            #region Exercise 3 - Tuesday
 
             //var takeQuery = customers
             //    .Take(3);
@@ -146,7 +152,9 @@ namespace LINQ_Examples
             //var takeORQuery = customers
             //    .Where (c => c.State.Equals("OR")).Take(3);
 
-            //exercise 4-tue
+            #endregion
+
+            #region Exercise 4 - Tuesday
 
             //var orderByFNameQuery = customers
             //    .OrderBy(c => c.First);
@@ -160,7 +168,9 @@ namespace LINQ_Examples
             //var orderByLOfFirstLastQuery = customers
             //    .OrderBy(c => c.First.Length).ThenBy(c => c.Last);
 
-            //exercise 5-tue
+            #endregion
+
+            #region Exercise 5 - Tuesday
 
             //IEnumerable<IGrouping<char, Customer>> groupByFirstLetterQuery = customers
             //    .GroupBy(c => c.First.First());
@@ -168,14 +178,18 @@ namespace LINQ_Examples
             //IEnumerable<IGrouping<string, Customer>> groupByFirstLetterQuery = customers
             //      .GroupBy(c => c.State);
 
-            //exercise 6-tue
+            #endregion
+
+            #region Exercise 6 - Tuesday
 
             //var exceptFindQuery = customers
             //    .Where(c => c.First.First() == c.Last.First());
 
             //var exceptQuery = customers.Except(exceptFindQuery);
 
-            //exercise 7-tue
+            #endregion
+
+            #region Exercise 7 - Tuesday
 
             //bool anyQuery = customers.Any(c => c.First.Contains("ed"));
 
@@ -196,7 +210,9 @@ namespace LINQ_Examples
             //    }
             //}
 
-            //exercise 1-thur
+            #endregion
+
+            #region Exercise 1 - Thursday
 
             //List<double> custLT100 = new List<double>();
             //foreach(double exPrice in ExchangedPrices)
@@ -216,7 +232,9 @@ namespace LINQ_Examples
             //    }
             //}
 
-            //exercise 2-thur
+            #endregion
+
+            #region Exercise 2 - Thursday
 
             //List<Customer> custFN = new List<Customer>();
             //foreach(Customer cus in customers)
@@ -242,7 +260,9 @@ namespace LINQ_Examples
             //    }
             //}
 
-            //exercise 3-thur
+            #endregion
+
+            #region Exercise 3 - Thursday
 
             //List<Customer> first3Cust = new List<Customer>();
             //for(int i = 0; i < 3; i++)
@@ -262,7 +282,9 @@ namespace LINQ_Examples
             //    }
             //}
 
-            //exercise 4-thur
+            #endregion
+
+            #region Exercise 4 - Thursday
 
             //List<string> fNAlpha = new List<string>();
             //foreach(Customer cus in customers)
@@ -292,7 +314,9 @@ namespace LINQ_Examples
             //}
             //sortedByFirstLengthLastAlpha.Sort(CompareCustomersByFirstAndLastEx4);
 
-            //exercise 5-thur
+            #endregion
+
+            #region Exercise 5 - Thursday
 
             //List<Customer> cusGroupByFirstLetter = new List<Customer>();
             //List<char> firstLetter = new List<char>();
@@ -346,7 +370,9 @@ namespace LINQ_Examples
             //    }
             //}
 
-            //exercise 6-thur
+            #endregion
+
+            #region Exercise 6 - Thursday
 
             //List<Customer> cusUsingExcept = new List<Customer>();
             //List<Customer> passingCustomers = new List<Customer>();
@@ -370,7 +396,9 @@ namespace LINQ_Examples
             //    }
             //}
 
-            //exercise 7-thur
+            #endregion
+
+            #region Exercise 7 - Thursday
 
             //List<Customer> cusUsingAny = new List<Customer>();
             //bool anyQuery = false;
@@ -388,6 +416,7 @@ namespace LINQ_Examples
             //Console.Write("There {0} customers with \"ed\" in their first name.",
             //              anyQuery ? "are" : "are not any");
 
+            #endregion
 
             //foreach (Customer n in passingCustomers)
             //{
@@ -397,65 +426,69 @@ namespace LINQ_Examples
             Console.ReadKey();
         }
 
-        //private static int CompareFirstNamesByLengthEx4(string x, string y)
-        //{
-        //    if (x == null)
-        //    {
-        //        if (y == null)
-        //        {
-        //            return 0;
-        //        }
-        //        else
-        //        {
-        //            return -1;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        if (y == null)
-        //        {
-        //            return 1;
-        //        }
-        //        else
-        //        {
-        //            int retval = x.Length.CompareTo(y.Length);
+        #endregion
 
-        //            if (retval != 0)
-        //            {
-        //                return retval;
-        //            }
-        //            else
-        //            {
-        //                return x.CompareTo(y);
-        //            }
-        //        }
-        //    }
-        //}
+        #region Comparers for exercises
+        private static int CompareFirstNamesByLengthEx4(string x, string y)
+        {
+            if (x == null)
+            {
+                if (y == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+            else
+            {
+                if (y == null)
+                {
+                    return 1;
+                }
+                else
+                {
+                    int retval = x.Length.CompareTo(y.Length);
 
-        //private static int CompareCustomersByPriceEx4(Customer x, Customer y)
-        //{
-        //    return y.Price.CompareTo(x.Price);
-        //}
+                    if (retval != 0)
+                    {
+                        return retval;
+                    }
+                    else
+                    {
+                        return x.CompareTo(y);
+                    }
+                }
+            }
+        }
 
-        //private static int CompareCustomersByFirstAndLastEx4(Customer x, Customer y)
-        //{
-        //    int returnValue;
-        //    returnValue = x.First.Length.CompareTo(y.First.Length);
-        //    if (returnValue == 0)
-        //    {
-        //        returnValue = x.Last.CompareTo(y.Last);
-        //    }
-        //    return returnValue;
-        //}
+        private static int CompareCustomersByPriceEx4(Customer x, Customer y)
+        {
+            return y.Price.CompareTo(x.Price);
+        }
 
-        //private static int CompareCustomersByFirstAlphaEx5(Customer x, Customer y)
-        //{
-        //    return x.First.CompareTo(y.First);
-        //}
+        private static int CompareCustomersByFirstAndLastEx4(Customer x, Customer y)
+        {
+            int returnValue;
+            returnValue = x.First.Length.CompareTo(y.First.Length);
+            if (returnValue == 0)
+            {
+                returnValue = x.Last.CompareTo(y.Last);
+            }
+            return returnValue;
+        }
 
-        //private static int CompareCustomersByState(Customer x, Customer y)
-        //{
-        //    return x.State.CompareTo(y.State);
-        //}
+        private static int CompareCustomersByFirstAlphaEx5(Customer x, Customer y)
+        {
+            return x.First.CompareTo(y.First);
+        }
+
+        private static int CompareCustomersByState(Customer x, Customer y)
+        {
+            return x.State.CompareTo(y.State);
+        }
+        #endregion
     }
 }
