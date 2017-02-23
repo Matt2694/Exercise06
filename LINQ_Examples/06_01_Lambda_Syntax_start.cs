@@ -387,7 +387,7 @@ namespace LINQ_Examples
             lNLength.Sort(CompareLastNamesByLengthEx4);
             foreach (Customer n in lNLength)
             {
-                //Console.WriteLine("{0} {1}", n.First, n.Last);
+                Console.WriteLine("{0} {1}", n.First, n.Last);
             }
 
             List<Customer> sortedByPrice = new List<Customer>();
@@ -528,36 +528,14 @@ namespace LINQ_Examples
         #region Comparers for exercises
         private static int CompareLastNamesByLengthEx4(Customer x, Customer y)
         {
-            if (x.Last == null)
+            int retval = x.Last.Length.CompareTo(y.Last.Length);
+            if (retval != 0)
             {
-                if (y.Last == null)
-                {
-                    return 0;
-                }
-                else
-                {
-                    return -1;
-                }
+                return retval;
             }
             else
             {
-                if (y.Last == null)
-                {
-                    return 1;
-                }
-                else
-                {
-                    int retval = x.Last.Length.CompareTo(y.Last.Length);
-
-                    if (retval != 0)
-                    {
-                        return retval;
-                    }
-                    else
-                    {
-                        return x.Last.CompareTo(y.Last);
-                    }
-                }
+                return x.Last.CompareTo(y.Last);
             }
         }
 
