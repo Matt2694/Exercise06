@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-//using System.Linq;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -114,314 +114,411 @@ namespace LINQ_Examples
 
             #region Exercise 1 - Tuesday
 
-            //IEnumerable<double> exchangeQuery =
-            //    from e in ExchangedPrices
-            //    where e < 1000
-            //    select e;
+            IEnumerable<double> exchangeQuery =
+                from e in ExchangedPrices
+                where e < 1000
+                select e;
+            foreach(double n in exchangeQuery)
+            {
+                //Console.WriteLine(n);
+            }
 
-            //IEnumerable<Customer> stateQuery =
-            //    from c in customers
-            //    where c.State == "GA"
-            //    select c;
+            IEnumerable<Customer> stateQuery1 =
+                from c in customers
+                where c.State == "GA"
+                select c;
+            foreach (Customer n in stateQuery1)
+            {
+                //Console.WriteLine(n.First + " " + n.Last);
+            }
 
             #endregion
 
             #region Exercise 2 - Tuesday
 
-            //IEnumerable<Customer> firstNameQuery =
-            //    from c in customers
-            //    select c;
+            IEnumerable<string> firstNameQuery =
+                from c in customers
+                select c.First;
+            foreach (string n in firstNameQuery)
+            {
+                //Console.WriteLine(n);
+            }
 
-            //var fullNameQuery =
-            //    from c in customers
-            //    select new { Name = c.First + " " + c.Last };
+            var fullNameQuery =
+                from c in customers
+                select c.First + " " + c.Last;
+            foreach ( string n in fullNameQuery)
+            {
+                //Console.WriteLine(n);
+            }
 
-            //var stateQuery =
-            //    from c in customers
-            //    from d in distributors
-            //    where d.State.Equals(c.State)
-            //    select c.State;
+            var stateQuery2 =
+                from c in customers
+                from d in distributors
+                where d.State.Equals(c.State)
+                select c.State;
+            foreach(string n in stateQuery2)
+            {
+                //Console.WriteLine(n);
+            }
 
             #endregion
 
             #region Exercise 3 - Tuesday
 
-            //var takeQuery = customers
-            //    .Take(3);
+            var takeQuery = customers
+                .Take(3);
+            foreach (Customer n in takeQuery)
+            {
+                //Console.WriteLine(n.First + " " + n.Last);
+            }
 
-            //var takeORQuery = customers
-            //    .Where (c => c.State.Equals("OR")).Take(3);
+            var takeORQuery = customers
+                .Where(c => c.State.Equals("OR")).Take(3);
+            foreach (Customer n in takeORQuery)
+            {
+                //Console.WriteLine(n.First + " " + n.Last);
+            }
 
             #endregion
 
             #region Exercise 4 - Tuesday
 
-            //var orderByFNameQuery = customers
-            //    .OrderBy(c => c.First);
+            var orderByFNameQuery = customers
+                .OrderBy(c => c.First);
+            foreach (Customer n in orderByFNameQuery)
+            {
+                //Console.WriteLine(n.First + " " + n.Last);
+            }
 
-            //var orderByLNameLengthQuery = customers
-            //    .OrderBy(c => c.Last.Length);
+            var orderByLNameLengthQuery = customers
+                .OrderBy(c => c.Last.Length);
+            foreach (Customer n in orderByLNameLengthQuery)
+            {
+                //Console.WriteLine(n.First + " " + n.Last);
+            }
 
-            //var orderByPriceHToLQuery = customers
-            //    .OrderByDescending(c => c.Price);
+            var orderByPriceHToLQuery = customers
+                .OrderByDescending(c => c.Price);
+            foreach (Customer n in orderByPriceHToLQuery)
+            {
+                //Console.WriteLine(n.Price);
+            }
 
-            //var orderByLOfFirstLastQuery = customers
-            //    .OrderBy(c => c.First.Length).ThenBy(c => c.Last);
+            var orderByLengthOfFirstLastAlphaQuery = customers
+                .OrderBy(c => c.First.Length).ThenBy(c => c.Last);
+            foreach (Customer n in orderByLengthOfFirstLastAlphaQuery)
+            {
+                //Console.WriteLine(n.First + " " + n.Last);
+            }
 
             #endregion
 
             #region Exercise 5 - Tuesday
 
-            //IEnumerable<IGrouping<char, Customer>> groupByFirstLetterQuery = customers
-            //    .GroupBy(c => c.First.First());
+            IEnumerable<IGrouping<char, Customer>> groupByFirstLetterQuery1 = customers
+                .GroupBy(c => c.First.First());
+            foreach (IGrouping<char, Customer> n in groupByFirstLetterQuery1)
+            {
+                //Console.WriteLine(n.Key);
+                foreach(Customer m in n)
+                {
+                    //Console.WriteLine("{0} {1}: {2:C}", m.First, m.Last, m.Price);
+                }
+            }
 
-            //IEnumerable<IGrouping<string, Customer>> groupByFirstLetterQuery = customers
-            //      .GroupBy(c => c.State);
+            IEnumerable<IGrouping<string, Customer>> groupByFirstLetterQuery2 = customers
+                  .GroupBy(c => c.State);
+            foreach (IGrouping<string, Customer> n in groupByFirstLetterQuery2)
+            {
+                //Console.WriteLine(n.Key);
+                foreach (Customer m in n)
+                {
+                    //Console.WriteLine("{0} {1}", m.First, m.Last);
+                }
+            }
 
             #endregion
 
             #region Exercise 6 - Tuesday
 
-            //var exceptFindQuery = customers
-            //    .Where(c => c.First.First() == c.Last.First());
-
-            //var exceptQuery = customers.Except(exceptFindQuery);
+            var FlFnQuery =
+                from c in customers
+                select c.First[0];
+            var FlLnQuery =
+                from c in customers
+                select c.Last[0];
+            var exceptFlFnDifferentFlLnQuery =
+                FlFnQuery.Except(FlLnQuery);
+            foreach (char n in exceptFlFnDifferentFlLnQuery)
+            {
+                //Console.WriteLine(n);
+            }
 
             #endregion
 
             #region Exercise 7 - Tuesday
 
-            //bool anyQuery = customers.Any(c => c.First.Contains("ed"));
+            bool anyQuery1 = customers.Any(c => c.First.Contains("ed"));
 
-            //foreach (var c in exceptQuery)
-            //{
-            //    Console.WriteLine("{0}, {1}", c.Last, c.First);
-            //}
-
-            //Console.Write("There {0} customers with \"ed\" in their first name.",
-            //              anyQuery ? "are" : "are not any");
-
-            //foreach (IGrouping<string, Customer> stateGroup in groupByFirstLetterQuery)
-            //{
-            //    Console.WriteLine("{0}", stateGroup.Key);
-            //    foreach (Customer c in stateGroup)
-            //    {
-            //        Console.WriteLine("  {0} {1}: {2:C}", c.First, c.Last, c.Price);
-            //    }
-            //}
+            //Console.WriteLine("There {0} customers with \"ed\" in their first name.",
+            //              anyQuery1 ? "are" : "are not any");
 
             #endregion
 
             #region Exercise 1 - Thursday
 
-            //List<double> custLT100 = new List<double>();
-            //foreach(double exPrice in ExchangedPrices)
-            //{
-            //    if(exPrice < 1000)
-            //    {
-            //        custLT100.Add(exPrice);
-            //    }
-            //}
+            List<double> custLT100 = new List<double>();
+            foreach (double exPrice in ExchangedPrices)
+            {
+                if (exPrice < 1000)
+                {
+                    custLT100.Add(exPrice);
+                }
+            }
+            foreach (double n in custLT100)
+            {
+                //Console.WriteLine(n);
+            }
 
-            //List<Customer> custGA = new List<Customer>();
-            //foreach(Customer cus in customers)
-            //{
-            //    if(cus.State == "GA")
-            //    {
-            //        custGA.Add(cus);
-            //    }
-            //}
+            List<Customer> custGA = new List<Customer>();
+            foreach (Customer cus in customers)
+            {
+                if (cus.State == "GA")
+                {
+                    custGA.Add(cus);
+                }
+            }
+            foreach (Customer n in custGA)
+            {
+                //Console.WriteLine(n.First + " " + n.Last);
+            }
 
             #endregion
 
             #region Exercise 2 - Thursday
 
-            //List<Customer> custFN = new List<Customer>();
-            //foreach(Customer cus in customers)
-            //{
-            //    custFN.Add(cus);
-            //}
+            List<string> custFN = new List<string>();
+            foreach (Customer cus in customers)
+            {
+                custFN.Add(cus.First);
+            }
+            foreach (string n in custFN)
+            {
+                //Console.WriteLine(n);
+            }
 
-            //List<string> FullName = new List<string>();
-            //foreach(Customer cus in customers)
-            //{
-            //    FullName.Add(cus.First + " " + cus.Last);
-            //}
+            List<string> fullName = new List<string>();
+            foreach (Customer cus in customers)
+            {
+                fullName.Add(cus.First + " " + cus.Last);
+            }
+            foreach (string n in fullName)
+            {
+                //Console.WriteLine(n);
+            }
 
-            //List<string> cusDisState = new List<string>();
-            //foreach(Customer cus in customers)
-            //{
-            //    foreach(Distributor dis in distributors)
-            //    {
-            //        if (cus.State.Equals(dis.State))
-            //        {
-            //            cusDisState.Add(cus.State);
-            //        }
-            //    }
-            //}
+            List<string> cusDisState = new List<string>();
+            foreach (Customer cus in customers)
+            {
+                foreach (Distributor dis in distributors)
+                {
+                    if (cus.State.Equals(dis.State))
+                    {
+                        cusDisState.Add(cus.State);
+                    }
+                }
+            }
+            foreach (string n in cusDisState)
+            {
+                //Console.WriteLine(n);
+            }
 
             #endregion
 
             #region Exercise 3 - Thursday
 
-            //List<Customer> first3Cust = new List<Customer>();
-            //for(int i = 0; i < 3; i++)
-            //{
-            //    first3Cust.Add(customers[i]);
-            //}
+            List<Customer> first3Cust1 = new List<Customer>();
+            for (int i = 0; i < 3; i++)
+            {
+                first3Cust1.Add(customers[i]);
+            }
+            foreach (Customer n in first3Cust1)
+            {
+                //Console.WriteLine("{0} {1}", n.First, n.Last);
+            }
 
-            //List<Customer> first3Cust = new List<Customer>();
-            //foreach (Customer cus in customers)
-            //{
-            //    if (first3Cust.Count < 3)
-            //    {
-            //        if (cus.State.Equals("OR"))
-            //        {
-            //            first3Cust.Add(cus);
-            //        }
-            //    }
-            //}
+            List<Customer> first3Cust2 = new List<Customer>();
+            foreach (Customer cus in customers)
+            {
+                if (first3Cust2.Count < 3)
+                {
+                    if (cus.State.Equals("OR"))
+                    {
+                        first3Cust2.Add(cus);
+                    }
+                }
+            }
+            foreach (Customer n in first3Cust2)
+            {
+                //Console.WriteLine("{0} {1}", n.First, n.Last);
+            }
 
             #endregion
 
             #region Exercise 4 - Thursday
 
-            //List<string> fNAlpha = new List<string>();
-            //foreach(Customer cus in customers)
-            //{
-            //    fNAlpha.Add(cus.First);
-            //}
-            //fNAlpha.Sort();
+            List<Customer> fNAlpha = new List<Customer>();
+            foreach (Customer cus in customers)
+            {
+                fNAlpha.Add(cus);
+            }
+            fNAlpha.Sort(CompareCustomersByFirstAlphaEx45);
+            foreach (Customer n in fNAlpha)
+            {
+                //Console.WriteLine("{0} {1}", n.First, n.Last);
+            }
 
-            //List<string> lNLength = new List<string>();
-            //foreach(Customer cus in customers)
-            //{
-            //    lNLength.Add(cus.Last);
-            //}
-            //lNLength.Sort(CompareFirstNamesByLengthEx4);
+            List<Customer> lNLength = new List<Customer>();
+            foreach (Customer cus in customers)
+            {
+                lNLength.Add(cus);
+            }
+            lNLength.Sort(CompareLastNamesByLengthEx4);
+            foreach (Customer n in lNLength)
+            {
+                //Console.WriteLine("{0} {1}", n.First, n.Last);
+            }
 
-            //List<Customer> sortedByPrice = new List<Customer>();
-            //foreach(Customer cus in customers)
-            //{
-            //    sortedByPrice.Add(cus);
-            //}
-            //sortedByPrice.Sort(CompareCustomersByPriceEx4);
+            List<Customer> sortedByPrice = new List<Customer>();
+            foreach (Customer cus in customers)
+            {
+                sortedByPrice.Add(cus);
+            }
+            sortedByPrice.Sort(CompareCustomersByPriceEx4);
+            foreach (Customer n in sortedByPrice)
+            {
+                //Console.WriteLine(n.Price);
+            }
 
-            //List<Customer> sortedByFirstLengthLastAlpha = new List<Customer>();
-            //foreach (Customer cus in customers)
-            //{
-            //    sortedByFirstLengthLastAlpha.Add(cus);
-            //}
-            //sortedByFirstLengthLastAlpha.Sort(CompareCustomersByFirstAndLastEx4);
+            List<Customer> sortedByFirstLengthLastAlpha = new List<Customer>();
+            foreach (Customer cus in customers)
+            {
+                sortedByFirstLengthLastAlpha.Add(cus);
+            }
+            sortedByFirstLengthLastAlpha.Sort(CompareCustomersByFirstAndLastEx4);
+            foreach (Customer n in sortedByFirstLengthLastAlpha)
+            {
+                //Console.WriteLine(n.First + " " + n.Last);
+            }
 
             #endregion
 
             #region Exercise 5 - Thursday
 
-            //List<Customer> cusGroupByFirstLetter = new List<Customer>();
-            //List<char> firstLetter = new List<char>();
-            //foreach(Customer cus in customers)
-            //{
-            //    cusGroupByFirstLetter.Add(cus);
-            //}
-            //cusGroupByFirstLetter.Sort(CompareCustomersByFirstAlphaEx5);
-            //foreach(Customer cus in cusGroupByFirstLetter)
-            //{
-            //    if (!firstLetter.Contains(cus.First[0]))
-            //    {
-            //        firstLetter.Add(cus.First[0]);
-            //    }
-            //}
-            //foreach(char n in firstLetter)
-            //{
-            //    Console.WriteLine(n);
-            //    foreach(Customer cus in cusGroupByFirstLetter)
-            //    {
-            //        if (n.Equals(cus.First[0]))
-            //        {
-            //            Console.WriteLine(cus.First + " " + cus.Last);
-            //        }
-            //    }
-            //}
+            List<Customer> cusGroupByFirstLetter = new List<Customer>();
+            List<char> firstLetter = new List<char>();
+            foreach (Customer cus in customers)
+            {
+                cusGroupByFirstLetter.Add(cus);
+            }
+            cusGroupByFirstLetter.Sort(CompareCustomersByFirstAlphaEx45);
+            foreach (Customer cus in cusGroupByFirstLetter)
+            {
+                if (!firstLetter.Contains(cus.First[0]))
+                {
+                    firstLetter.Add(cus.First[0]);
+                }
+            }
+            foreach (char n in firstLetter)
+            {
+                //Console.WriteLine(n);
+                //foreach (Customer cus in cusGroupByFirstLetter)
+                //{
+                //    if (n.Equals(cus.First[0]))
+                //    {
+                //        Console.WriteLine("{0} {1}: {2:C}", cus.First, cus.Last, cus.Price);
+                //    }
+                //}
+            }
 
-            //List<Customer> cusGroupByState = new List<Customer>();
-            //List<string> states = new List<string>();
-            //foreach(Customer cus in customers)
-            //{
-            //    cusGroupByState.Add(cus);
-            //}
-            //cusGroupByState.Sort(CompareCustomersByState);
-            //foreach(Customer cus in cusGroupByState)
-            //{
-            //    if (!states.Contains(cus.State))
-            //    {
-            //        states.Add(cus.State);
-            //    }
-            //}
-            //foreach (string n in states)
-            //{
-            //    Console.WriteLine(n);
-            //    foreach (Customer cus in cusGroupByState)
-            //    {
-            //        if (n.Equals(cus.State))
-            //        {
-            //            Console.WriteLine(cus.First + " " + cus.Last);
-            //        }
-            //    }
-            //}
+            List<Customer> cusGroupByState = new List<Customer>();
+            List<string> states = new List<string>();
+            foreach (Customer cus in customers)
+            {
+                cusGroupByState.Add(cus);
+            }
+            cusGroupByState.Sort(CompareCustomersByState);
+            foreach (Customer cus in cusGroupByState)
+            {
+                if (!states.Contains(cus.State))
+                {
+                    states.Add(cus.State);
+                }
+            }
+            foreach (string n in states)
+            {
+                //Console.WriteLine(n);
+                //foreach (Customer cus in cusGroupByState)
+                //{
+                //    if (n.Equals(cus.State))
+                //    {
+                //        Console.WriteLine("{0} {1}", cus.First, cus.Last);
+                //    }
+                //}
+            }
 
             #endregion
 
             #region Exercise 6 - Thursday
 
-            //List<Customer> cusUsingExcept = new List<Customer>();
-            //List<Customer> passingCustomers = new List<Customer>();
-            //foreach(Customer cus in customers)
-            //{
-            //    cusUsingExcept.Add(cus);
-            //}
-            //foreach(Customer cus1 in cusUsingExcept)
-            //{
-            //    int i = 0;
-            //    foreach (Customer cus2 in cusUsingExcept)
-            //    {
-            //        if (cus1.First[0].Equals(cus2.Last[0]))
-            //        {
-            //            i++;
-            //        }
-            //    }
-            //    if (i == 0)
-            //    {
-            //        passingCustomers.Add(cus1);
-            //    }
-            //}
+            List<Customer> cusUsingExcept = new List<Customer>();
+            List<Customer> passingCustomers = new List<Customer>();
+            foreach (Customer cus in customers)
+            {
+                cusUsingExcept.Add(cus);
+            }
+            foreach (Customer cus1 in cusUsingExcept)
+            {
+                int i = 0;
+                foreach (Customer cus2 in cusUsingExcept)
+                {
+                    if (cus1.First[0].Equals(cus2.Last[0]))
+                    {
+                        i++;
+                    }
+                }
+                if (i == 0)
+                {
+                    passingCustomers.Add(cus1);
+                }
+            }
+            foreach (Customer n in passingCustomers)
+            {
+                //Console.WriteLine(n.First[0]);
+            }
 
             #endregion
 
             #region Exercise 7 - Thursday
 
-            //List<Customer> cusUsingAny = new List<Customer>();
-            //bool anyQuery = false;
-            //foreach(Customer cus in customers)
-            //{
-            //    cusUsingAny.Add(cus);
-            //}
-            //foreach(Customer cus in cusUsingAny)
-            //{
-            //    if (cus.First.Contains("ed"))
-            //    {
-            //        anyQuery = true;
-            //    }
-            //}
-            //Console.Write("There {0} customers with \"ed\" in their first name.",
-            //              anyQuery ? "are" : "are not any");
+            List<Customer> cusUsingAny = new List<Customer>();
+            bool anyQuery2 = false;
+            foreach (Customer cus in customers)
+            {
+                cusUsingAny.Add(cus);
+            }
+            foreach (Customer cus in cusUsingAny)
+            {
+                if (cus.First.Contains("ed"))
+                {
+                    anyQuery2 = true;
+                }
+            }
+            //Console.WriteLine("There {0} customers with \"ed\" in their first name.",
+            //              anyQuery2 ? "are" : "are not any");
 
             #endregion
-
-            //foreach (Customer n in passingCustomers)
-            //{
-            //    Console.WriteLine(n.First + " " + n.Last);
-            //}
 
             Console.ReadKey();
         }
@@ -429,11 +526,11 @@ namespace LINQ_Examples
         #endregion
 
         #region Comparers for exercises
-        private static int CompareFirstNamesByLengthEx4(string x, string y)
+        private static int CompareLastNamesByLengthEx4(Customer x, Customer y)
         {
-            if (x == null)
+            if (x.Last == null)
             {
-                if (y == null)
+                if (y.Last == null)
                 {
                     return 0;
                 }
@@ -444,13 +541,13 @@ namespace LINQ_Examples
             }
             else
             {
-                if (y == null)
+                if (y.Last == null)
                 {
                     return 1;
                 }
                 else
                 {
-                    int retval = x.Length.CompareTo(y.Length);
+                    int retval = x.Last.Length.CompareTo(y.Last.Length);
 
                     if (retval != 0)
                     {
@@ -458,7 +555,7 @@ namespace LINQ_Examples
                     }
                     else
                     {
-                        return x.CompareTo(y);
+                        return x.Last.CompareTo(y.Last);
                     }
                 }
             }
@@ -480,7 +577,7 @@ namespace LINQ_Examples
             return returnValue;
         }
 
-        private static int CompareCustomersByFirstAlphaEx5(Customer x, Customer y)
+        private static int CompareCustomersByFirstAlphaEx45(Customer x, Customer y)
         {
             return x.First.CompareTo(y.First);
         }
