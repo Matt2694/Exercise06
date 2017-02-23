@@ -387,7 +387,7 @@ namespace LINQ_Examples
             lNLength.Sort(CompareLastNamesByLengthEx4);
             foreach (Customer n in lNLength)
             {
-                Console.WriteLine("{0} {1}", n.First, n.Last);
+                //Console.WriteLine("{0} {1}", n.First, n.Last);
             }
 
             List<Customer> sortedByPrice = new List<Customer>();
